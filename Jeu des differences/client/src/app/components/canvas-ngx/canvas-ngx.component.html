@@ -1,0 +1,34 @@
+<div class="Canvas-ngx">
+    <p class="canvas-type">{{type}}</p>
+    <div class='superposeCanvasDrawCanvasImage'>
+        <canvas class="canvasImage" #CanvasImage [attr.width]="width" [attr.height]="height"></canvas>
+        <canvas class="canvasDraw" #CanvasDraw [attr.width]="width" [attr.height]="height"></canvas>
+    </div>
+    <input type="file" class="file-upload" (change)="onFileSelected($event)" accept=".bmp" #fileUpload />
+    <div class="Tools-Canvas {{ type }}">
+        <img
+            matTooltip="Téléverser une image"
+            src="./assets/img/UploadBackground.png"
+            id="UploadBtn"
+            alt="Upload Background"
+            class="btn-tools-Canvas"
+            (click)="fileUpload.click()"
+        />
+        <img
+            matTooltip="Réinitialiser l'arrière-plan"
+            src="./assets/img/ClearBackground.png"
+            class="btn-tools-Canvas"
+            alt="Clear Background"
+            (click)="clearCanvas()"
+        />
+        <img
+            matTooltip="Réinitialiser l'avant-plan"
+            id="ClearCanvas"
+            class="btn-tools-Canvas"
+            alt="Clear Canvas"
+            (click)="clearCanvasDraw()"
+        />
+    </div>
+    <canvas #CanvasTemp [attr.width]="width" [attr.height]="height" style="display: none;"></canvas>
+
+</div>

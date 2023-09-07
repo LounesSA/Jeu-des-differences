@@ -1,0 +1,13 @@
+<div class="container" min-width="800px">
+    <h1 class="feedback-message"> Differences détectées : {{showDifference}} <span
+            *ngIf="showDifference < 3 || showDifference > 9" class="warning-message"> {{showMessage}}</span>
+    </h1>
+    <div class="image-pixel">
+        <canvas #dd width="640" height="480"></canvas>
+    </div>
+    <div class="btn-block">
+        <button class="btn cancel" (click)="closeOnAbort()">Annuler</button>
+        <button *ngIf="showDifference > 2 && showDifference < 10" class="btn validate"
+            (click)="openName()">Valider</button>
+    </div>
+</div>

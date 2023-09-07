@@ -1,0 +1,27 @@
+<div class="message" (click)="handleGameClick($event)">
+    <div class="container" >
+        <div class="player-circle">
+            <p class="player-initials">{{playerInitials | uppercase}}</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="discussion-box">
+            <p class="event-title">Messages</p>
+            <hr>
+            <div *ngFor="let message of socketClient.messageList">
+                <p *ngIf="message.event === false" class="user-message" [style.background-color]="message.color"
+                [style.margin-left]="message.pos"
+                >{{message.playerName}}- {{message.message}}</p>
+                <p *ngIf="message.event === true" class="event-message">{{message.message}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <textarea id ="chat-box" [disabled]= "gameService.gameType === 'solo' || !notRewinding" type="text" maxlength="200" cols="40"  
+         rows="5"  placeholder="Écrire à {{gameService.opponentName}}… (200 caractères maximum)" [(ngModel)]="message">
+        </textarea>
+    </div>
+    <div class="container">
+        <button mat-raised-button class="send-btn" (click)="sendMessage()" [disabled]= "gameService.gameType === 'solo' || !notRewinding" >Envoyer</button>
+    </div>
+</div>

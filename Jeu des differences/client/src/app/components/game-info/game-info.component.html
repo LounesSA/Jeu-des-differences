@@ -1,0 +1,63 @@
+<div *ngIf="gameService.game" class="infos">
+    <div class="left">
+        <p class="title">{{gameService.game.gameName}}</p>
+        <p class="sub-title game-infos" *ngIf="gameService.gameType === 'solo'; else multiBlock">
+            {{gameService.gameType}}</p>
+        <ng-template #multiBlock>
+            <p class="sub-title game-infos">Multijoueur</p>
+        </ng-template>
+        <div *ngIf="gameService.gameType === 'solo'">
+            <p class="sub-title">Différences trouvées par - {{gameService.playerName}}</p>
+            <div>
+                <img *ngFor="let differences of gameService.differencesArray" class="differences-trouvees-img"
+                    src={{differences}} alt="Differences trouvées" />
+            </div>
+        </div>
+
+        <div *ngIf="gameService.gameType === 'double' && !gameService.mode">
+            <p class="sub-title">Différences trouvées par - {{gameService.playerName}}</p>
+            <div>
+                <img *ngFor="let differences of gameService.differencesArray" class="differences-trouvees-img"
+                    src={{differences}} alt="Differences trouvées" />
+            </div>
+            <p class="sub-title">Différences trouvées par - {{gameService.opponentName}}</p>
+            <div>
+                <img *ngFor="let differences of gameService.opponentDifferencesArray" class="differences-trouvees-img"
+                    src={{differences}} alt="Differences trouvées" />
+            </div>
+        </div>
+        <div *ngIf="gameService.gameType === 'double' && gameService.mode">
+            <p class="sub-title">Différences trouvées par - {{gameService.playerName}} - {{gameService.opponentName}}
+            </p>
+            <div>
+                <img *ngFor="let differences of gameService.differencesArray" class="differences-trouvees-img"
+                    src={{differences}} alt="Differences trouvées" />
+            </div>
+        </div>
+    </div>
+    <div class="middle">
+        <div class="difficulty">
+            <p>
+                Difficulté :
+                <span *ngIf="gameService.gameInformation.gameDifficulty === 'Facile'" class="difficulty-easy">
+                    {{gameService.gameInformation.gameDifficulty}}
+                </span>
+                <span *ngIf="gameService.gameInformation.gameDifficulty === 'Difficile'" class="difficulty-hard">
+                    {{gameService.gameInformation.gameDifficulty}}
+                </span>
+            </p>
+        </div>
+        <app-timer></app-timer>
+    </div>
+    <div class="right">
+        <div *ngIf="gameService.gameType === 'solo'">
+            <p class="sub-title">Indices restants</p>
+            <div>
+                <img *ngFor="let hints of hintsDisplayService.hintsArray" class="differences-trouvees-img" src={{hints}}
+                    alt="Indices restants" />
+            </div>
+            <button class="btn btn-primary" [disabled]="hintsService.nHintsLeft===0 || !notRewinding"
+                (click)="hintsService.triggerHints()">Utiliser un indice</button>
+        </div>
+    </div>
+</div>

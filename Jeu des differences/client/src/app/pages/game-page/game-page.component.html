@@ -1,0 +1,35 @@
+<div class="container">
+    <div id= "gameContainer" class="header"><app-header></app-header></div>
+    <app-game-info [notRewinding]="notRewinding"></app-game-info>
+    <div class="mainView">
+        <div class="superposeImageCanvas">
+            <canvas
+                class="image"
+                #originalImage
+                [attr.width]="width"
+                [attr.height]="height"
+            ></canvas>
+            <canvas #canvas0 style="z-index: 1;" [attr.width]="width" [attr.height]="height" (click)="mouseHitDetect($event)"></canvas>
+            <canvas #canvasCheat0 style="top: -221.3%;" [attr.width]="width" [attr.height]="height"></canvas>
+            <canvas #canvas1 style="top: -335%;" [attr.width]="width" [attr.height]="height"></canvas>
+        </div>
+        <div class="superposeImageCanvas">
+            <canvas
+                class="image"
+                #modifiedImage
+                [attr.width]="width"
+                [attr.height]="height"
+            ></canvas>
+            <canvas #canvas3 style="z-index: 1;" [attr.width]="width" [attr.height]="height" (click)="mouseHitDetect($event)"></canvas>
+            <canvas #canvasCheat1 style="top: -221.3%;" [attr.width]="width" [attr.height]="height"></canvas>
+            <canvas #canvas2 style="top: -335%;" [attr.width]="width" [attr.height]="height"></canvas>
+        </div>
+    </div>
+    <div class="footer">
+        <button *ngIf="notRewinding" mat-raised-button class="giveUp btn" (click)="this.gameService.giveUp()">Abandonner la partie</button>
+        <app-rewind-control-bar class="rewindControlBar" *ngIf="!notRewinding" #rewindControlBar></app-rewind-control-bar>
+    </div>
+    <div class="message">
+        <app-message-area #chatComponent id="chat" [playerName]="this.gameService.playerName"></app-message-area>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+.Canvas-ngx {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.Canvas-ngx canvas {
+    margin: auto;
+    margin-left: 20px;
+    width: 640px;
+    height: 480px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+
+.file-upload {
+    display: none;
+}
+
+.Originale,
+.Modifiée {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 70%;
+}
+
+.btn-tools-canvas {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.canvas-type {
+    font-size: 1.5em;
+    color: black;
+    background-color: rgb(142, 136, 199);
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.superposeCanvasDrawCanvasImage {
+    width: 640px;
+    height: 480px;
+    .canvasImage {
+        position: relative;
+        top: 0;
+        left: 0;
+        background-color: transparent;
+    }
+    .canvasDraw {
+        position: relative !important;
+        top: -101.4% !important;
+        left: -0% !important;
+        background-color: transparent;
+    }
+}
+
+#ClearCanvas {
+    content: url(../../../assets/img/clear-canvas-1.png);
+    // border 
+    border: 6px solid gray;
+    border-radius: 25%;
+    &:hover {
+        content: url(../../../assets/img/clear-canvas-2.png);
+    }
+}
